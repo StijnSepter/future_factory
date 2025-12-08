@@ -1,0 +1,104 @@
+/* Header container */
+.header {
+    padding: 1rem 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+/* Container width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar layout */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Left section (logo + title) */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Logo styling */
+.logo {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Title */
+.site-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+    display: block;
+}
+
+.menu-button {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Navigation links container */
+.nav-links {
+    width: 100%;
+    display: block;
+    flex-grow: 1;
+}
+
+.nav-link {
+    display: block;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex !important;
+        align-items: center;
+        width: auto;
+    }
+
+    .nav-link {
+        margin-top: 0;
+    }
+}
+
+/* Alpine.js hidden class override */
+.hidden {
+    display: none !important;
+}

@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head>﻿
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/nav.css">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,600,600i,700&display=swap"
         rel="stylesheet">
     <title>@yield('title') | LiteMailer</title>
