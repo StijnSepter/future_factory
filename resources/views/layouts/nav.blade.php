@@ -2,9 +2,14 @@
     :class="{'bg-white': openNav === true }"
     class="py-4 px-6 absolute top-0 left-0 right-0 z-10">
     <div class="container mx-auto">
-        <nav class="flex items-center justify-between flex-wrap">
+        <nav class="flex items-center justify-between flex-wrap heigt">
             <div class="flex items-center flex-shrink-0 mr-6">
-                <img src={{ Storage::url($post->logo) }} alt="logo of the website">
+<img
+  src="{{ Storage::url('assets/future_factory_logo.png') }}"
+  alt="logo"
+  class="h-[35px] w-[35px] object-cover block"
+/>
+
                 <a href="{{url('#')}}" class="text-3xl font-bold">Future Factory</a>
             </div>
             <div class="block lg:hidden">
