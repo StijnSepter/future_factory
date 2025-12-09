@@ -36,7 +36,6 @@ class User extends Authenticatable
         return $this->role === self::ROLE_VIEWER;
     }
 
-
     protected $fillable = [
         'name',
         'email',
