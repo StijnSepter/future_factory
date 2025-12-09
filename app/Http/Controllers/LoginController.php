@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; // <-- CRITICAL: Must use the Controllers namespace
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use App\Models\User; // Correct case
 
-class LoginController extends Controller
+class LoginController extends Controller // <-- CRITICAL: Must extend Controller
 {
     public function showLoginForm()
     {
@@ -18,35 +19,44 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        // 1. Validate the input
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'], // You must add a password field to your form!
+            'password' => ['required'], 
         ]);
 
-        // 2. Attempt to log the user in (this sets the session key)
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // 3. Redirect based on the user's role (optional, but helpful)
-            $user = Auth::user();
-            if ($user->isAdmin()) {
-                return redirect()->intended('/admin/dashboard');
-            }
-            // Add other role-based redirects here
-            
-            return redirect()->intended('/dashboard'); // Default redirect
+            /** @var \App\Models\User $user */ // <-- THIS RESOLVES THE WARNING
+            $user = Auth::user(); 
         }
 
-        // If login fails
+        if ($user->isAdmin()) {
+            return redirect()->intended('/admin/dashboard');
+        }
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            
+            $user = Auth::user(); 
+
+            // Use the helper methods defined in your User model
+            if ($user->isAdmin()) {
+                return redirect()->intended('/admin/dashboard');
+            } elseif ($user->isEditor()) {
+                return redirect()->intended('/editor/dashboard');
+            } elseif ($user->isauthor()) {
+                return redirect()->intended('/author/dashboard');
+            }
+            
+            return redirect()->intended('/dashboard'); 
+        }
+
         throw ValidationException::withMessages([
             'email' => ['The provided credentials do not match our records.'],
         ]);
     }
 
-    /**
-     * Log the user out.
-     */
     public function logout(Request $request)
     {
         Auth::logout();

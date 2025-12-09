@@ -1,32 +1,39 @@
 <?php
 
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+
+// Consolidated Login Routes (Avoids duplicates)
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::get('/login', [App\Http\Controllers\LoginController::class, 'showLoginForm'])->name('login');
+// Group routes that share the 'auth' middleware and your 'role' middleware
+Route::middleware('auth')->group(function () {
+    
+    // Default logged-in home page (accessible to everyone)
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('welcome'); // Added a name for clarity
+    
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+    // Admin Dashboard (requires 'admin' role)
+    Route::get('/admin/dashboard', function () {
+        return view('admin-dashboard');
+    })->middleware('role:admin')->name('admin.dashboard');
 
+    // Editor OR Author Routes (requires 'editor' or 'author' role)
+    Route::get('/post/create', function () {
+        return view('post-create');
+    })->middleware('role:editor,author')->name('post.create');
 
-Route::get('/home', function () {
-    return view('home');
+    // Viewer Route (requires 'viewer' role)
+    Route::get('/view', function () {
+        // FIX: Ensure this view name matches your file name (e.g., 'viewer-page')
+        return view('viewer-page'); 
+    })->middleware('role:viewer')->name('view.page');
 });
-
-
-
-Route::get('/admin/dashboard', function () {
-    return "Welcome, Admin!";
-})->middleware(['auth', 'role:admin'])->name('admin.dashboard');
-
-// Editor OR Admin route (passes an array of allowed roles)
-Route::get('/posts/create', function () {
-    return "Create a new post.";
-})->middleware(['auth', 'role:admin,editor'])->name('posts.create');
-
-// Viewer route (for testing the default role)
-Route::get('/view', function () {
-    return "You are a viewer.";
-})->middleware(['auth', 'role:viewer'])->name('viewer');
