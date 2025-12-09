@@ -22,22 +22,20 @@ class User extends Authenticatable
     {
         return $this->role === self::ROLE_ADMIN;
     }
-    public function isEditor(): bool
+    public function isPlanner(): bool
     {
         return $this->role === self::ROLE_EDITOR;
     }
-    public function isauthor(): bool
+    public function isMechanic(): bool
     {
         return $this->role === self::ROLE_AUTHOR;
     }
-
-    public function isviewer(): bool
+    public function isUser(): bool
     {
         return $this->role === self::ROLE_VIEWER;
     }
 
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];

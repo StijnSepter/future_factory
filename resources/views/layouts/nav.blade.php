@@ -28,9 +28,9 @@
             </div>
 
             <div class="hidden md:flex md:space-x-4 nav-links">
-                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Home</a>
-                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Send Bulk Email</a>
-                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Add New Email</a>
+                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Dashboard</a>
+                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Agenda</a>
+                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Voertuigassemblage</a>
             </div>
         </nav>
     </div>
@@ -46,9 +46,9 @@
          @click.away="openNav = false"
     >
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
-            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Home</a>
-            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Send Bulk Email</a>
-            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Add New Email</a>
+            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Dashboard</a>
+            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Agenda</a>
+            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Voertuigassemblage</a>
         </div>
     </div>
 </header>

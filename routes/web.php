@@ -14,8 +14,8 @@ Route::middleware('auth')->group(function () {
     
     // Default logged-in home page (accessible to everyone)
     Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome'); // Added a name for clarity
+        return view('dashboard');
+    })->name('dashboard'); // Added a name for clarity
     
     Route::get('/home', function () {
         return view('home');

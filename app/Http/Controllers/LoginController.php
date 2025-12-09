@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers; // <-- CRITICAL: Must use the Controllers namespace
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use App\Models\User; // Correct case
+use App\Models\User;
 
-class LoginController extends Controller // <-- CRITICAL: Must extend Controller
+class LoginController extends Controller
 {
     public function showLoginForm()
     {
@@ -19,39 +19,35 @@ class LoginController extends Controller // <-- CRITICAL: Must extend Controller
      */
     public function login(Request $request)
     {
+        // 1. Validate the input
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'], 
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            /** @var \App\Models\User $user */ // <-- THIS RESOLVES THE WARNING
-            $user = Auth::user(); 
-        }
-
-        if ($user->isAdmin()) {
-            return redirect()->intended('/admin/dashboard');
-        }
-
+        // 2. Attempt to log the user in
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             
+            /** @var \App\Models\User $user */
             $user = Auth::user(); 
 
-            // Use the helper methods defined in your User model
+            // 3. Redirect based on the user's role (Clean and consolidated)
             if ($user->isAdmin()) {
                 return redirect()->intended('/admin/dashboard');
-            } elseif ($user->isEditor()) {
-                return redirect()->intended('/editor/dashboard');
-            } elseif ($user->isauthor()) {
-                return redirect()->intended('/author/dashboard');
+            } elseif ($user->isPlanner()) {
+                // Assuming you meant '/editor/dashboard' for Planner
+                return redirect()->intended('/mechanic/dashboard');
+            } elseif ($user->isMechanic()) {
+                // Assuming you meant '/author/dashboard' for Mechanic
+                return redirect()->intended('/buyer/dashboard');
             }
             
+            // Default redirect (e.g., for 'User' role)
             return redirect()->intended('/dashboard'); 
         }
 
+        // 4. If login fails, throw validation exception
         throw ValidationException::withMessages([
             'email' => ['The provided credentials do not match our records.'],
         ]);
