@@ -23,9 +23,9 @@
             @include('dashboards.planner')
 
         @elseif (Auth::user()->isMechanic())
-            {{-- Load content specific to the Mechanic role (Author) --}}
-            <p class="text-xl text-yellow-600 mb-4">Welcome to your task assignment view.</p>
-            @include('dashboards.mechanic')
+            <p class="text-xl text-yellow-600 mb-4">Welkom bij uw taaktoewijzingsview.</p>
+            {{-- 🚨 Use the null coalescing operator to provide an empty collection as fallback --}}
+            @include('dashboards.mechanic', ['vehicles' => $assemblyVehicles ?? collect()])
 
         @else 
             {{-- Default view for Viewer/General User --}}

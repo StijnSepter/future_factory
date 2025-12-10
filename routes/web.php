@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController; 
+use App\Http\Controllers\PlannerController;
+use App\Http\Middleware\RoleMiddleware;
+use App\Models\User;
 
 // Consolidated Login Routes (Avoids duplicates)
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -21,8 +24,8 @@ Route::middleware('auth')->group(function () {
     
     // Default logged-in home page (accessible to everyone)
     Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard'); // Added a name for clarity
+        return redirect()->route('dashboard');
+    });
     
     Route::get('/home', function () {
         return view('home');
@@ -40,4 +43,12 @@ Route::middleware('auth')->group(function () {
     })->middleware('role:viewer')->name('view.page');
 });
 
+Route::middleware(['auth', 'role:' . User::ROLE_EDITOR])->group(function () {
+    // 1. Show the form for creating a new Vehicle/Task
+    Route::get('/planner/create_vehicle', [PlannerController::class, 'create'])
+        ->name('planner.create_vehicle');
 
+    // 2. Handle the form submission and store the new Vehicle
+    Route::post('/planner/store_vehicle', [PlannerController::class, 'store'])
+        ->name('planner.store_vehicle');
+});

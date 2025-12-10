@@ -8,7 +8,10 @@
         {{-- Left: Planning Actions --}}
         <div class="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-200 space-y-4">
             <h4 class="text-lg font-bold text-blue-700">Planningstools</h4>
-            <button class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Nieuwe Planning Starten</button>
+            {{-- 🚨 Updated Link to the New Vehicle Creation Form --}}
+            <a href="{{ route('planner.create_vehicle') }}" class="w-full inline-block text-center py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                Nieuwe Productietaak Aanmaken
+            </a>
             <button class="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Taken Herindelen</button>
         </div>
 
