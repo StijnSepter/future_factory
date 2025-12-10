@@ -12,10 +12,10 @@
         {{-- PRIMARY CONTENT SWITCHING --}}
         {{-- ---------------------------------------------------------------- --}}
 
-        @if (Auth::user()->isAdmin())
+        @if (Auth::user()->isPurchaser())
             {{-- Load the full administrative control panel --}}
-            <p class="text-xl text-indigo-600 mb-4">You have full Administrative privileges.</p>
-            @include('dashboards.admin')
+            <p class="text-xl text-indigo-600 mb-4">You have full purchaser privileges.</p>
+            @include('dashboards.purchaser')
 
         @elseif (Auth::user()->isPlanner())
             {{-- Load content specific to the Planner role (Editor) --}}

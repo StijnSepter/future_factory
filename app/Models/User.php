@@ -13,12 +13,12 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    const ROLE_ADMIN = 'admin';
+    const ROLE_ADMIN = 'purchaser';
     const ROLE_EDITOR = 'editor';
     const ROLE_AUTHOR = 'author';
     const ROLE_VIEWER = 'viewer';
 
-    public function isAdmin(): bool
+    public function isPurchaser(): bool
     {
         return $this->role === self::ROLE_ADMIN;
     }
