@@ -2,12 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController; 
 
 // Consolidated Login Routes (Avoids duplicates)
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+// Base Dashboard Route - Protected by authentication
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
+    
 
 // Group routes that share the 'auth' middleware and your 'role' middleware
 Route::middleware('auth')->group(function () {
@@ -21,11 +28,6 @@ Route::middleware('auth')->group(function () {
         return view('home');
     })->name('home');
 
-    // Admin Dashboard (requires 'admin' role)
-    Route::get('/admin/dashboard', function () {
-        return view('admin-dashboard');
-    })->middleware('role:admin')->name('admin.dashboard');
-
     // Editor OR Author Routes (requires 'editor' or 'author' role)
     Route::get('/post/create', function () {
         return view('post-create');
@@ -37,3 +39,5 @@ Route::middleware('auth')->group(function () {
         return view('viewer-page'); 
     })->middleware('role:viewer')->name('view.page');
 });
+
+

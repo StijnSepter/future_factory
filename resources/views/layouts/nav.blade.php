@@ -28,13 +28,13 @@
             </div>
 
             <div class="hidden md:flex md:space-x-4 nav-links">
-                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Dashboard</a>
+                <a href="{{url('/dashboard')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Dashboard</a>
                 <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Agenda</a>
-                <a href="{{url('/')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Voertuigassemblage</a>
+                <a href="{{url('/login')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">loguit</a>
             </div>
         </nav>
     </div>
-
+ 
     <div x-show="openNav"
          x-transition:enter="duration-200 ease-out"
          x-transition:enter-start="opacity-0 scale-95"
@@ -48,7 +48,7 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
             <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Dashboard</a>
             <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Agenda</a>
-            <a href="{{url('/')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">Voertuigassemblage</a>
+            <a href="{{url('/login')}}" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-600 transition duration-300">loguit</a>
         </div>
     </div>
 </header>
