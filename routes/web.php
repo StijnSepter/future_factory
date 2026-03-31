@@ -31,6 +31,11 @@ Route::middleware('auth')->group(function () {
         return view('home');
     })->name('home');
 
+     Route::get('/agenda', function () {
+        return view('agenda');
+    })->name('agenda');
+
+
     // Editor OR Author Routes (requires 'editor' or 'author' role)
     Route::get('/post/create', function () {
         return view('post-create');
@@ -43,12 +48,16 @@ Route::middleware('auth')->group(function () {
     })->middleware('role:viewer')->name('view.page');
 });
 
-Route::middleware(['auth', 'role:' . User::ROLE_EDITOR])->group(function () {
-    // 1. Show the form for creating a new Vehicle/Task
-    Route::get('/planner/create_vehicle', [PlannerController::class, 'create'])
-        ->name('planner.create_vehicle');
+// Route::middleware(['auth', 'role:' . User::ROLE_EDITOR])->group(function () {
+//     // 1. Show the form for creating a new Vehicle/Task
+//     Route::get('/planner/create_vehicle', [PlannerController::class, 'create'])
+//         ->name('planner.create_vehicle');
 
-    // 2. Handle the form submission and store the new Vehicle
-    Route::post('/planner/store_vehicle', [PlannerController::class, 'store'])
+//     // 2. Handle the form submission and store the new Vehicle
+//    
+// });
+
+Route::get('/planner/create_vehicle', [PlannerController::class, 'create'])
+        ->name('planner.create_vehicle');
+         Route::post('/planner/store_vehicle', [PlannerController::class, 'store'])
         ->name('planner.store_vehicle');
-});

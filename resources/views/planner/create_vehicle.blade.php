@@ -39,8 +39,8 @@
 
                     @if (isset($modules[$type]))
                         @foreach ($modules[$type] as $module)
-                            <option value="{{ $module->id }}" @selected(old("{$type}_module_id") == $module->id)>
-                                {{ $module->name }} (&euro;{{ number_format($module->cost, 0, ',', '.') }})
+                           <option value="{{ $module->id }}" @selected(old("{$type}_module_id") == $module->id)>
+                                {{ $module->name }} (&euro;{{ number_format((float)($module->cost ?? 0), 0, ',', '.') }})
                             </option>
                         @endforeach
                     @else
