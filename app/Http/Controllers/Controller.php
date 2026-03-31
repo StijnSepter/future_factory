@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 abstract class Controller
 {
     function index(){
-        print("hello this is hte index funciton");
+        print("hello this is the index function");
     }
 }
 

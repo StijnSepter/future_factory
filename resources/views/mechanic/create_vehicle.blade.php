@@ -6,7 +6,7 @@
     <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-2xl">
         <h2 class="text-3xl font-bold text-indigo-700 mb-6 border-b pb-3">Nieuwe Assemblagetaak Plannen</h2>
         
-        <form action="{{ route('planner.store_vehicle') }}" method="POST" class="space-y-6">
+        <form method="POST" action="{{ route('vehicles.store') }}">            
             @csrf
 
             {{-- Vehicle Name --}}

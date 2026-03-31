@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,33 +20,33 @@ class Vehicle extends Model
         'steering_module_id',
         'seats_module_id',
     ];
-    
+
     // Define relationships to fetch module details
-    public function chassis(): BelongsTo
+    public function chassis()
     {
         return $this->belongsTo(Module::class, 'chassis_module_id');
     }
 
-    public function drive(): BelongsTo
+    public function drive()
     {
         return $this->belongsTo(Module::class, 'drive_module_id');
     }
 
-    public function wheels(): BelongsTo
+    public function wheels()
     {
         return $this->belongsTo(Module::class, 'wheels_module_id');
     }
 
-    public function steering(): BelongsTo
+    public function steering()
     {
         return $this->belongsTo(Module::class, 'steering_module_id');
     }
 
-    public function seats(): BelongsTo
+    public function seats()
     {
         return $this->belongsTo(Module::class, 'seats_module_id');
     }
-    
+
     // You can also add accessors here to calculate total cost/time
     public function getTotalCostAttribute(): float
     {
