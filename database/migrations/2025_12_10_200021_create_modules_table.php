@@ -14,13 +14,10 @@ public function up(): void
             // Common Properties for ALL modules
             $table->string('name')->unique();
             $table->string('type'); // chassis, drive, wheels, etc.
-            $table->integer('assembly_time_blocks'); // In blocks of 2 uur
+            $table->json('properties')->nullable(); 
+            $table->integer('assembly_time_blocks');
             $table->decimal('cost', 10, 2);
-            $table->string('image_path')->nullable();
-
-            // Specific Properties (Stored as JSON or individual columns if preferred)
-            $table->json('properties')->nullable(); // Store unique data (e.g., wheel diameter, chassis dimensions)
-
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

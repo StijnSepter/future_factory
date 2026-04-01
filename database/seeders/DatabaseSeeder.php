@@ -18,12 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
         UserRoleSeeder::class, 
         ModuleSeeder::class, 
-        VehicleSeeder::class,
-        ]);
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // VehicleSeeder::class,
         ]);
     }
 }
