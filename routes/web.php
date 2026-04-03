@@ -27,6 +27,17 @@ Route::get('/dashboard/vehicles/create', [MechanicController::class, 'create'])
     ->middleware('auth', 'role:author')
     ->name('vehicles.create');
 
+Route::get('/dashboard/planner/add_to_agenda', [PlannerController::class, 'addToAgenda'])
+    ->name('planner.add_to_agenda');
+
+Route::prefix('dashboard/planner')
+    ->middleware(['auth', 'role:editor'])
+    ->group(function () {
+        Route::get('/', [PlannerController::class, 'index'])->name('planner.index');
+        Route::get('/create', [PlannerController::class, 'create'])->name('planner.create');
+        Route::post('/', [PlannerController::class, 'store'])->name('planner.store');
+    });
+
 // Group routes that share the 'auth' middleware and your 'role' middleware
 Route::middleware('auth')->group(function () {
 

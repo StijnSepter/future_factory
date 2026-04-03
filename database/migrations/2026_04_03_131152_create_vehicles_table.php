@@ -20,8 +20,9 @@ return new class extends Migration
             $table->foreignId('wheels_module_id')->constrained('modules');
             $table->foreignId('steering_module_id')->constrained('modules');
             $table->foreignId('seats_module_id')->nullable()->constrained('modules');
-
             $table->string('status');
+            $table->string('robot')->nullable();
+            $table->date('due_date')->nullable();
             $table->timestamps();
         });
     }
