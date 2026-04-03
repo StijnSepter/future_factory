@@ -1,4 +1,4 @@
-{{-- resources/views/dashboards/mechanic_content.blade.php --}}
+{{-- resources/views/dashboards/mechanic.blade.php --}}
 
 <div class="space-y-8">
     <h3 class="text-2xl font-semibold text-gray-800 border-b pb-2">Monteur: Actieve Assemblagetaken</h3>
@@ -26,10 +26,10 @@
             {{-- Drive --}}
             <div>
                 <h4 class="font-bold">Aandrijving</h4>
-                <select name="drive_id" class="w-full border p-2">
+                <select name="drive_module_id" class="w-full border p-2">
                     @foreach($modules['drive'] ?? [] as $module)
-                        <option value="{{ $drive->id }}">
-                            {{ $drive->name }}
+                        <option value="{{ $module->id }}">
+                            {{ $module->name }}
                         </option>
                     @endforeach
                 </select>
@@ -38,10 +38,10 @@
             {{-- Wheels --}}
             <div>
                 <h4 class="font-bold">Wielen</h4>
-                <select name="wheels_id" class="w-full border p-2">
-                   @foreach($modules['wheels'] ?? [] as $module)
-                        <option value="{{ $wheel->id }}">
-                            {{ $wheel->name }}
+                <select name="wheels_module_id" class="w-full border p-2">
+                    @foreach($modules['wheels'] ?? [] as $module)
+                        <option value="{{ $module->id }}">
+                            {{ $module->name }}
                         </option>
                     @endforeach
                 </select>
@@ -50,10 +50,10 @@
             {{-- Steering --}}
             <div>
                 <h4 class="font-bold">Stuur</h4>
-                <select name="steering_id" class="w-full border p-2">
+                <select name="steering_module_id" class="w-full border p-2">
                     @foreach($modules['steering'] ?? [] as $module)
-                        <option value="{{ $steering->id }}">
-                            {{ $steering->name }}
+                        <option value="{{ $module->id }}">
+                            {{ $module->name }}
                         </option>
                     @endforeach
                 </select>
@@ -62,20 +62,18 @@
             {{-- Seats (optional) --}}
             <div>
                 <h4 class="font-bold">Stoelen (optioneel)</h4>
-                <select name="seats_id" class="w-full border p-2">
+                <select name="seats_module_id" class="w-full border p-2">
                     <option value="">Geen</option>
-                   @foreach($modules['seats'] ?? [] as $module)
-                        <option value="{{ $seat->id }}">
-                            {{ $seat->name }}
+                    @foreach($modules['seats'] ?? [] as $module)
+                        <option value="{{ $module->id }}">
+                            {{ $module->name }}
                         </option>
                     @endforeach
                 </select>
             </div>
-
             <button class="bg-indigo-600 text-white px-6 py-2 rounded">
                 Opslaan
             </button>
-
         </div>
     </form>
 </div>

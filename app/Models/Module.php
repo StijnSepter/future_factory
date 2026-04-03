@@ -26,6 +26,7 @@ class Module extends Model
         'cost' => 'decimal:2'
     ];
 
+
     public function getFormattedCostAttribute()
     {
         return '€' . number_format($this->cost, 2, ',', '.');

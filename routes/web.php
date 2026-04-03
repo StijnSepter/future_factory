@@ -13,15 +13,19 @@ use App\Http\Controllers\MechanicController;
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/vehicles/create', [MechanicController::class, 'create'])->name('vehicles.create');
 Route::post('/vehicles', [MechanicController::class, 'store'])->name('vehicles.store');
 Route::get('/vehicles/{id}', [MechanicController::class, 'show'])->name('vehicles.show');
+
 
 // Base Dashboard Route - Protected by authentication
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
+
+Route::get('/dashboard/vehicles/create', [MechanicController::class, 'create'])
+    ->middleware('auth', 'role:author')
+    ->name('vehicles.create');
 
 // Group routes that share the 'auth' middleware and your 'role' middleware
 Route::middleware('auth')->group(function () {
@@ -52,7 +56,3 @@ Route::middleware('auth')->group(function () {
     })->middleware('role:viewer')->name('view.page');
 });
 
-Route::get('/planner/create_vehicle', [PlannerController::class, 'create'])
-    ->name('planner.create_vehicle');
-Route::post('/planner/store_vehicle', [PlannerController::class, 'store'])
-    ->name('planner.store_vehicle');

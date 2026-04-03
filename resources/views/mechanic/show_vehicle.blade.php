@@ -9,35 +9,39 @@
 
     <div class="space-y-4">
 
-        @php
-            $modules = [
-                $vehicle->chassis,
-                $vehicle->drive,
-                $vehicle->wheels,
-                $vehicle->steering,
-                $vehicle->seats,
-            ];
-        @endphp
+       @php
+    $assemblyOrder = [
+        'chassis' => $vehicle->chassis,
+        'drive' => $vehicle->drive,
+        'wheels' => $vehicle->wheels,
+        'steering' => $vehicle->steering,
+        'seats' => $vehicle->seats,
+    ];
+@endphp
 
-        @foreach ($modules as $module)
-            @if ($module)
-                <div class="border p-4 rounded bg-gray-50">
-                    <h4 class="font-bold">{{ $module->name }}</h4>
-                    <p class="text-sm text-gray-500">{{ $module->type }}</p>
+@foreach ($assemblyOrder as $type => $module)
+    @if ($module)
+        <div class="border p-4 rounded bg-gray-50">
+            <h4 class="font-bold">
+                Stap: {{ ucfirst($type) }}
+            </h4>
 
-                    @foreach ($module->properties as $key => $value)
-                        <p class="text-sm">
-                            {{ ucfirst($key) }}:
-                            {{ is_array($value) ? implode(', ', $value) : $value }}
-                        </p>
-                    @endforeach
+            <p class="text-lg">{{ $module->name }}</p>
 
-                    <p class="text-green-600 font-semibold">
-                        €{{ number_format($module->cost, 2, ',', '.') }}
-                    </p>
-                </div>
+            {{-- Dependencies --}}
+            @if(!empty($module->properties['depends_on']))
+                <p class="text-sm text-orange-600">
+                    Vereist:
+                    {{ implode(', ', $module->properties['depends_on']) }}
+                </p>
             @endif
-        @endforeach
+
+            <p class="text-green-600 font-semibold">
+                €{{ number_format($module->cost, 2, ',', '.') }}
+            </p>
+        </div>
+    @endif
+@endforeach
 
     </div>
 

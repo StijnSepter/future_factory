@@ -23,10 +23,17 @@
             @include('dashboards.planner')
 
         @elseif (Auth::user()->isMechanic())
-            <p class="text-xl text-yellow-600 mb-4">Welkom bij uw taaktoewijzingsview.</p>
-            {{-- 🚨 Use the null coalescing operator to provide an empty collection as fallback --}}
-            @include('dashboards.mechanic', ['vehicles' => $assemblyVehicles ?? collect()])
-
+            @auth
+                @if(auth()->user()->isMechanic())
+                    <a href="{{ route('vehicles.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded">
+                        Nieuwe assemblagetaak
+                    </a>
+                @endif
+            @endauth
+            @include('dashboards.mechanic', [
+                'vehicles' => $assemblyVehicles ?? collect(),
+                'modules' => $modules
+            ])
         @else 
             {{-- Default view for Viewer/General User --}}
             <p class="text-xl text-gray-600 mb-4">This is the general user dashboard.</p>
