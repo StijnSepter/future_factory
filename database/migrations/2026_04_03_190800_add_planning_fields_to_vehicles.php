@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::table('vehicles', function (Blueprint $table) {
             $table->date('planned_date')->nullable();
             $table->integer('time_slot')->nullable(); // 1–4
-            $table->string('assinged_robot')->nullable();
+            $table->enum('robot', ['hydroboy', 'heavyD', 'twoWheels']);
         });
     }
 

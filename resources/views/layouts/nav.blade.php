@@ -10,7 +10,7 @@
                     alt="logo"
                     class="h-8 w-auto logo"
                 />
-                <a href="{{url('#')}}" class="site-title text-xl font-bold tracking-wider hover:text-indigo-400 transition duration-300">
+                <a href="{{url('/dashboard')}}" class="site-title text-xl font-bold tracking-wider hover:text-indigo-400 transition duration-300">
                     Future Factory
                 </a>
             </div>

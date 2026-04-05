@@ -8,7 +8,6 @@
            class="block bg-blue-600 text-white p-2 rounded text-center">
             + Nieuwe Taak
         </a>
-b
         <button class="w-full bg-gray-300 p-2 rounded">
             Filter op Robot
         </button>

@@ -67,14 +67,15 @@
             <label class="block text-sm font-medium text-gray-700 mb-1">
                 Robot
             </label>
-            <input type="text" name="robot"
-                   class="w-full border rounded p-2"
-                   placeholder="Bijv. Robot A"
-                   value="{{ old('robot') }}">
-            @error('robot')
-                <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
+            <select name="robot" class="w-full border rounded p-2">
+                @foreach($robots as $robot)
+                    <option value="{{ $robot}}">
+                        {{ $robot }}
+                    </option>
+                @endforeach
+            </select>
         </div>
+
 
         {{-- Submit --}}
         <div class="pt-4">

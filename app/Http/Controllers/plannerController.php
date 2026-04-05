@@ -29,7 +29,7 @@ class PlannerController extends Controller
             'vehicle_id' => 'required|exists:vehicles,id',
             'planned_date' => 'required|date',
             'time_slot' => 'required|integer|min:1|max:4',
-            'robot' => 'required|string|max:255',
+            'robot' => 'required|in:hydroboy,heavyD,twoWheels',
         ]);
 
         // 2. Check if this robot already has a task at that time
@@ -59,7 +59,8 @@ class PlannerController extends Controller
     public function addToAgenda()
     {
         $unplannedVehicles = Vehicle::whereNull('planned_date')->get();
+        $robots = ['hydroboy', 'heavyD', 'twoWheels'];
 
-        return view('planner.add_to_agenda', compact('unplannedVehicles'));
+        return view('planner.add_to_agenda', compact('unplannedVehicles', "robots"));
     }
 }
