@@ -8,7 +8,7 @@
            class="block bg-blue-600 text-white p-2 rounded text-center">
             + Nieuwe Taak
         </a>
-
+b
         <button class="w-full bg-gray-300 p-2 rounded">
             Filter op Robot
         </button>
@@ -49,7 +49,7 @@
             </div>
 
             {{-- 📅 Days --}}
-            {{-- @foreach($days as $day)
+            @foreach($days ?? [] as $day)
                 <div>
                     <h4 class="font-bold mb-2">{{ $day->format('D d-m') }}</h4>
 
@@ -70,7 +70,7 @@
                         </div>
                     @endforeach
                 </div>
-            @endforeach --}}
+            @endforeach
         </div>
 
     </div> {{-- ✅ END CALENDAR --}}

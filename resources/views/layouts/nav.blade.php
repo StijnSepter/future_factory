@@ -3,6 +3,7 @@
         class="sticky top-0 z-50 bg-gray-800 text-white shadow-md">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center justify-between h-16">
+            <a href="{{url('./dashboard')}}">
             <div class="flex items-center space-x-3 nav-left">
                 <img
                     src="{{ Storage::url('assets/future_factory_logo.png') }}"
@@ -13,6 +14,7 @@
                     Future Factory
                 </a>
             </div>
+            </a>
 
             <div class="flex md:hidden mobile-menu-btn">
                 <button @click="openNav = !openNav" class="menu-button p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

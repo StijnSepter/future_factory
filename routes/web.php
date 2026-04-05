@@ -38,6 +38,7 @@ Route::prefix('dashboard/planner')
         Route::post('/', [PlannerController::class, 'store'])->name('planner.store');
     });
 
+
 // Group routes that share the 'auth' middleware and your 'role' middleware
 Route::middleware('auth')->group(function () {
 
@@ -67,3 +68,7 @@ Route::middleware('auth')->group(function () {
     })->middleware('role:viewer')->name('view.page');
 });
 
+
+Route::get('/test-role', function () {
+    return 'Middleware works!';
+})->middleware('role:editor');

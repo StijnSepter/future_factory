@@ -10,18 +10,22 @@
 
     <form method="POST" action="{{ route('planner.store') }}" class="space-y-4">
         @csrf
-
         {{-- Vehicle --}}
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
                 Voertuig
             </label>
             <select name="vehicle_id" class="w-full border rounded p-2">
-                @foreach($unplannedVehicles as $vehicle)
-                    <option value="{{ $vehicle->id }}">
-                        {{ $vehicle->name }} (ID: {{ $vehicle->id }})
+                @if($unplannedVehicles->isEmpty())
+                    <option>
+                        <p>No vehicles found</p>
                     </option>
-                @endforeach
+                @endif
+                    @foreach($unplannedVehicles as $vehicle)
+                        <option value="{{ $vehicle->id }}">
+                            {{ $vehicle->name }} (ID: {{ $vehicle->id }})
+                        </option>
+                    @endforeach
             </select>
             @error('vehicle_id')
                 <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -81,5 +85,10 @@
         </div>
 
     </form>
+    @if(session('success'))
+        <div class="bg-green-200 text-green-800 p-2 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
 </div>
 @endsection
