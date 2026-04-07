@@ -18,8 +18,6 @@
             @include('dashboards.purchaser')
 
         @elseif (Auth::user()->isPlanner())
-            {{-- Load content specific to the Planner role (Editor) --}}
-            <p class="text-xl text-green-600 mb-4">Welcome to the Planning interface.</p>
             @include('dashboards.planner')
 
         @elseif (Auth::user()->isMechanic())

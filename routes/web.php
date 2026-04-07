@@ -17,26 +17,23 @@ Route::post('/vehicles', [MechanicController::class, 'store'])->name('vehicles.s
 Route::get('/vehicles/{id}', [MechanicController::class, 'show'])->name('vehicles.show');
 
 
-// Base Dashboard Route - Protected by authentication
+// The main entry point
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
+// Keep your functional routes for the Planner
+Route::prefix('dashboard/planner')
+    ->middleware(['auth', 'role:editor'])
+    ->group(function () {
+        Route::get('/create', [PlannerController::class, 'create'])->name('planner.create');
+        Route::post('/', [PlannerController::class, 'store'])->name('planner.store');
+        Route::get('/add_to_agenda', [PlannerController::class, 'addToAgenda'])->name('planner.add_to_agenda');
+    });
 
 Route::get('/dashboard/vehicles/create', [MechanicController::class, 'create'])
     ->middleware('auth', 'role:author')
     ->name('vehicles.create');
-
-Route::get('/dashboard/planner/add_to_agenda', [PlannerController::class, 'addToAgenda'])
-    ->name('planner.add_to_agenda');
-
-Route::prefix('dashboard/planner')
-    ->middleware(['auth', 'role:editor'])
-    ->group(function () {
-        Route::get('/', [PlannerController::class, 'index'])->name('planner.index');
-        Route::get('/create', [PlannerController::class, 'create'])->name('planner.create');
-        Route::post('/', [PlannerController::class, 'store'])->name('planner.store');
-    });
 
 
 // Group routes that share the 'auth' middleware and your 'role' middleware
@@ -67,8 +64,3 @@ Route::middleware('auth')->group(function () {
         return view('viewer-page');
     })->middleware('role:viewer')->name('view.page');
 });
-
-
-Route::get('/test-role', function () {
-    return 'Middleware works!';
-})->middleware('role:editor');

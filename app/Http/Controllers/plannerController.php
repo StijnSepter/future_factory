@@ -9,19 +9,19 @@ use Carbon\Carbon;
 
 class PlannerController extends Controller
 {
-    public function index()
-    {
-        $startOfWeek = Carbon::now()->startOfWeek();
+   public function index()
+{
+    $startOfWeek = Carbon::now()->startOfWeek();
 
-        $days = collect();
-        for ($i = 0; $i < 5; $i++) {
-            $days->push($startOfWeek->copy()->addDays($i));
-        }
-
-        $tasks = Vehicle::whereNotNull('planned_date')->get();
-        return view('dashboard', compact('days', 'tasks'));
+    $days = collect();
+    for ($i = 0; $i < 5; $i++) {
+        $days->push($startOfWeek->copy()->addDays($i));
     }
 
+    $tasks = Vehicle::whereNotNull('planned_date')->get();
+
+    return view('planner.index', compact('days', 'tasks')); 
+}
     public function store(Request $request)
     {
         // 1. Validate input
@@ -52,8 +52,7 @@ class PlannerController extends Controller
         $vehicle->save();
 
         // 4. Redirect back to the planner calendar
-        return redirect()->route('planner.index')
-            ->with('success', 'Voertuig succesvol ingepland!');
+        return redirect()->route('dashboard')->with('success', 'Voertuig ingepland!');
     }
 
     public function addToAgenda()
