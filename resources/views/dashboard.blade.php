@@ -23,13 +23,6 @@
             @include('dashboards.planner')
 
         @elseif (Auth::user()->isMechanic())
-            @auth
-                @if(auth()->user()->isMechanic())
-                    <a href="{{ route('vehicles.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded">
-                        Nieuwe assemblagetaak
-                    </a>
-                @endif
-            @endauth
             @include('dashboards.mechanic', [
                 'vehicles' => $assemblyVehicles ?? collect(),
                 'modules' => $modules
