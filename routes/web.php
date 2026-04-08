@@ -26,7 +26,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 Route::prefix('dashboard/planner')
     ->middleware(['auth', 'role:editor'])
     ->group(function () {
-        Route::get('/create', [PlannerController::class, 'create'])->name('planner.create');
         Route::post('/', [PlannerController::class, 'store'])->name('planner.store');
         Route::get('/add_to_agenda', [PlannerController::class, 'addToAgenda'])->name('planner.add_to_agenda');
     });
@@ -43,10 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
-
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
 
     Route::get('/agenda', function () {
         return view('agenda');

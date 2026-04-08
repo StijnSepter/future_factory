@@ -31,8 +31,13 @@
 
             <div class="hidden md:flex md:space-x-4 nav-links">
                 <a href="{{url('/dashboard')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Dashboard</a>
-                <a href="{{url('/agenda')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Agenda</a>
-                <a href="{{url('/login')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">loguit</a>
+                {{-- <a href="{{url('/agenda')}}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">Agenda</a> --}}
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition duration-300">
+                        Loguit
+                    </button>
+                </form>
             </div>
         </nav>
     </div>

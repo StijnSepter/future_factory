@@ -7,6 +7,7 @@ use App\Models\Module;
 
 class ModuleSeeder extends Seeder
 {
+    
     public function run()
     {
         // CHASSIS

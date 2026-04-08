@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::table('vehicles', function (Blueprint $table) {
             $table->date('planned_date')->nullable();
             $table->integer('time_slot')->nullable(); // 1–4
-            $table->enum('robot', ['hydroboy', 'heavyD', 'twoWheels']);
         });
     }
 
@@ -21,7 +20,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('vehicles', function (Blueprint $table) {
-            //
+            $table->dropColumn(['planned_date', 'time_slot']);
         });
     }
 };

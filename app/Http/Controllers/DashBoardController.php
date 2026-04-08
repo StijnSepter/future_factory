@@ -37,10 +37,10 @@ class DashboardController extends Controller
     }
 
         // Check for Mechanic (Author)
-        if ($user->isMechanic()) {
-            $data['assemblyVehicles'] = \App\Models\Vehicle::where('status', 'assembly')->get();
-            $data['modules'] = \App\Models\Module::all();
-        }
+    if ($user->isMechanic()) {
+        $data['modules'] = \App\Models\Module::all()->groupBy('type');
+        $data['assemblyVehicles'] = \App\Models\Vehicle::all(); 
+    }
 
         return view('dashboard', $data);
     }

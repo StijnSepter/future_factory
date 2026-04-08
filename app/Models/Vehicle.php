@@ -12,14 +12,17 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'status',
-        'chassis_module_id',
-        'drive_module_id',
-        'wheels_module_id',
-        'steering_module_id',
-        'seats_module_id',
-    ];
+    'name',
+    'status',
+    'chassis_module_id',
+    'drive_module_id',
+    'wheels_module_id',
+    'steering_module_id',
+    'seats_module_id',
+    'robot',          // ADD
+    'planned_date',   // ADD
+    'time_slot'       // ADD
+];
 
     // Define relationships to fetch module details
     public function chassis()
@@ -57,5 +60,14 @@ class Vehicle extends Model
             }
         }
         return $cost;
+    }
+    public function getRobotNameAttribute(): string
+    {
+        return match($this->robot) {
+            'hydroboy' => 'Hydroboy',
+            'heavyD' => 'Heavy Duty',
+            'twoWheels' => 'Two Wheels',
+            default => 'Unknown',
+        };
     }
 }

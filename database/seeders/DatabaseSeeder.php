@@ -13,12 +13,13 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+    
     public function run(): void
     {
         $this->call([
         UserRoleSeeder::class, 
         ModuleSeeder::class, 
-        // VehicleSeeder::class,
+        VehicleSeeder::class,
         ]);
     }
 }

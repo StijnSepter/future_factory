@@ -21,7 +21,6 @@ class Module extends Model
     // Cast the specific properties column to be handled as an array/object
     protected $casts = [
         'properties' => 'array',
-        'cost' => 'decimal:2',
         'assembly_time_blocks' => 'integer',
         'cost' => 'decimal:2'
     ];

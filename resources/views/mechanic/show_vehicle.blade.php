@@ -45,9 +45,17 @@
 
     </div>
 
-    <div class="mt-6 border-t pt-4 text-right">
-        <h3 class="text-xl font-bold">
-            Totale prijs: €{{ number_format($vehicle->total_cost, 2, ',', '.') }}
+    <div class="mt-6 border-t pt-4 flex justify-between items-center">
+        <a href="/dashboard" 
+        class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-md transition duration-150 ease-in-out border border-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Terug naar Dashboard
+        </a>
+
+        <h3 class="text-xl font-bold text-gray-900">
+            Totale prijs: <span class="text-indigo-600">€{{ number_format($vehicle->total_cost, 2, ',', '.') }}</span>
         </h3>
     </div>
 
